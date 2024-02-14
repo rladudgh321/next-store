@@ -4,62 +4,40 @@
 
 /* navbar */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  height: 52px;
-  border-bottom: 1px solid silver;
-  align-items: center;
-  position: fixed;
-  top:0;
-  width: 100%;
-  background-color: white;
+    @apply flex justify-between h-[52px] items-center fixed top-0 w-full bg-white shadow-sm
 }
 
 .navbar__logo {
-  font-size: large;
-  font-weight: 600;
-  padding-left: 16px;
-  color: darkblue;
-  cursor: pointer;
+  @apply px-4 py-0 text-lg font-semibold text-blue-900 cursor-pointer;
 }
 
 .navbar__list {
-  font-size: 14px;
-  display: flex;
-  gap: 12px;
-  padding-right: 16px;
-  align-items: center;
+  @apply flex gap-4 px-4 items-center text-sm
 }
 
 .navbar__button {
-  display: none;
+  @apply hidden cursor-pointer
 }
 
 @media only screen and (max-width: 600px) {
   .navbar__list--mobile {
-    background-color: darkblue;
-    height: 100vh;
-    color: white;
-    position: fixed;
-    top:52px;
-    width: 100%;
+    @apply bg-blue-900 h-screen text-white fixed top-[52px] w-full
   }
   
   .navbar__list--mobile a{
-    display: block;
-    padding: 8px;
-    font-size: small;
+
+    @apply block p-2 text-sm
   }
 
   .navbar__button {
-    display: block;
+    @apply block
   }
 
   .navbar__list {
-    display: none;
+    @apply hidden
   }
 }
 
 .layout {
-  padding-top: 52px;
+  @apply pt-[52px];
 }
