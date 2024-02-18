@@ -1,8 +1,9 @@
+import { StoreType } from '@/interface';
 import { Dispatch, SetStateAction, useCallback, useEffect } from "react";
 
 interface MarkersProps {
   map: any;
-  stores: any[];
+  stores: StoreType[];
   setCurrentStore: Dispatch<SetStateAction<any>>;
 }
 
@@ -11,14 +12,14 @@ export default function Markers({map, stores, setCurrentStore}: MarkersProps) {
     //식당 데이터 마커 띄우기
     stores?.map((store) => {
 
-      var imageSrc = store?.bizcnd_code_nm ? `/images/markers/${store?.bizcnd_code_nm}.png` : '/images/markers/default.png', // 마커이미지의 주소입니다
+      var imageSrc = store?.category ? `/images/markers/${store?.category}.png` : '/images/markers/default.png', // 마커이미지의 주소입니다
         imageSize = new window.kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
         imageOption = {offset: new window.kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다
 
       // 마커가 표시될 위치입니다
       var markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
       
-      var markerPosition = new window.kakao.maps.LatLng(store?.y_dnts, store?.x_cnts);
+      var markerPosition = new window.kakao.maps.LatLng(store?.lat, store?.lng);
 
       // 마커를 생성합니다
       var marker = new window.kakao.maps.Marker({
@@ -30,7 +31,7 @@ export default function Markers({map, stores, setCurrentStore}: MarkersProps) {
       marker.setMap(map);
 
 
-      var content = `<div class="infowindow">${store?.upso_nm}</div>`
+      var content = `<div class="infowindow">${store?.name}</div>`
 
       //커스텀 오버레이
       var customOverlay = new window.kakao.maps.CustomOverlay({
